@@ -1,3 +1,4 @@
+#[derive(Debug)]
 pub enum TokenType {
     // SINGLE-CHARACTER TOKENS
     LeftParen,
@@ -24,8 +25,8 @@ pub enum TokenType {
 
     // LITERALS
     Identifier,
-    String,
-    Number,
+    String(String),
+    Number(f64),
 
     // KEYWORDS
     And,
@@ -48,24 +49,18 @@ pub enum TokenType {
     EOF,
 }
 
-pub enum Literal {
-    String(String),
-    Number(usize),
-}
-
+#[derive(Debug)]
 pub struct Token {
     ttype: TokenType,
     lexeme: String,
-    literal: Literal,
     line: usize,
 }
 
 impl Token {
-    pub fn new(ttype: TokenType, lexeme: String, literal: Literal, line: usize) -> Self {
+    pub fn new(ttype: TokenType, lexeme: String, line: usize) -> Self {
         Self {
             ttype,
             lexeme,
-            literal,
             line,
         }
     }
