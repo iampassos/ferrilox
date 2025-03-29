@@ -95,7 +95,7 @@ impl Scanner {
 
     fn string(&mut self) {
         while self.peek() != '"' && !self.is_at_end() {
-            if (self.peek() == '\n') {
+            if self.peek() == '\n' {
                 self.line += 1;
             }
 
@@ -177,17 +177,11 @@ impl Scanner {
     }
 
     fn peek(&self) -> char {
-        self.source
-            .chars()
-            .nth(self.current)
-            .expect("Couldn't read lexeme")
+        self.source.chars().nth(self.current).unwrap_or('\0')
     }
 
     fn peek_next(&self) -> char {
-        self.source
-            .chars()
-            .nth(self.current + 1)
-            .expect("Couldn't read lexeme")
+        self.source.chars().nth(self.current + 1).unwrap_or('\0')
     }
 
     fn advance(&mut self) -> char {
