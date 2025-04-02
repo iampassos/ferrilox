@@ -4,6 +4,7 @@ use std::{
 };
 
 mod scanner;
+mod syntax;
 mod token;
 
 fn run(source: &str) {
