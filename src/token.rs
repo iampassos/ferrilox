@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum TokenType {
     // SINGLE-CHARACTER TOKENS
     LeftParen,
@@ -59,9 +59,9 @@ pub enum LiteralType {
 
 #[derive(Debug)]
 pub struct Token {
-    ttype: TokenType,
-    lexeme: String,
-    line: usize,
+    pub ttype: TokenType,
+    pub lexeme: String,
+    pub line: usize,
 }
 
 impl Token {

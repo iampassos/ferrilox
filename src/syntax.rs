@@ -1,32 +1,24 @@
 use crate::token::{LiteralType, Token};
 
 pub enum Expr {
-    Binary(Binary),
-    Grouping(Grouping),
-    Literal(Literal),
-    Unary(Unary),
+    Binary {
+        left: Box<Expr>,
+        operator: Token,
+        right: Box<Expr>,
+    },
+    Grouping {
+        expression: Box<Expr>,
+    },
+    Literal {
+        literal: LiteralType,
+    },
+    Unary {
+        operator: Token,
+        expression: Box<Expr>,
+    },
 }
 
-struct Binary {
-    left: Box<Expr>,
-    operator: Token,
-    right: Box<Expr>,
-}
-
-struct Grouping {
-    expression: Box<Expr>,
-}
-
-struct Literal {
-    literal: LiteralType,
-}
-
-struct Unary {
-    operator: Token,
-    expression: Box<Expr>,
-}
-
-trait Visitor {
+pub trait Visitor {
     fn visit_binary();
     fn visit_grouping();
     fn visit_literal();

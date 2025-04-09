@@ -3,6 +3,7 @@ use std::{
     io::{Result, prelude::*},
 };
 
+mod parser;
 mod scanner;
 mod syntax;
 mod token;
